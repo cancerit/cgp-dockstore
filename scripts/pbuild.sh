@@ -12,7 +12,7 @@ source $OS_CRED_FILE
 GIT_CID=`git describe --always --dirty`
 GIT_CID_CLEAN=`git describe --always`
 GEN_DATE=`date "+%Y-%m-%d"`
-GIT_IMG_NAME="cgp-wr-dockstore_${UBUNTU_NAME} ${GEN_DATE} (${GIT_CID})"
+GIT_IMG_NAME="cgp-wr-ds_${UBUNTU_NAME} ${GEN_DATE} (${GIT_CID})"
 
 ## if the image exists delete and continue
 set +e

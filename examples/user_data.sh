@@ -30,3 +30,10 @@ progress_meter = False
 secret_key = ...
 use_https = True
 " > ~/.s3cfg'
+
+### MY dockstore credentials:
+sudo -u ubuntu bash -c 'echo "token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+server-url: https://dockstore.org:8443
+[s3]
+endpoint = https://cog.sanger.ac.uk
+" > /home/ubuntu/.dockstore/config'

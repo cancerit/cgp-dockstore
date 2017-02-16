@@ -38,7 +38,9 @@ sudo chmod ugo+rx /opt/dockstore/dockstore
 sudo ln -s /opt/dockstore/dockstore /usr/local/bin/dockstore
 ## add dummy token (only change if you want to develop)
 sudo -u ubuntu mkdir -p /home/ubuntu/.dockstore
-sudo -u ubuntu bash -c 'echo -e "token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nserver-url: https://dockstore.org:8443\n\n[s3]\nendpoint = https://cog.sanger.ac.uk" > /home/ubuntu/.dockstore/config'
+sudo -u ubuntu bash -c 'echo "token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+server-url: https://dockstore.org:8443
+" > /home/ubuntu/.dockstore/config'
 sudo -u ubuntu dockstore
 #
 ## DOCKSTORE ##
