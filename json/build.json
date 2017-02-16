@@ -6,7 +6,8 @@
     "os_floating_ip_pool": "{{env `OS_FIP_POOL`}}",
     "os_security_grp": "{{env `OS_SECURITY_GRP`}}",
     "os_network": "{{env `OS_NETWORK_ID`}}",
-    "created_image_name": "{{env `GIT_IMG_NAME`}}",
+    "created_image_name": "{{env `CREATED_IMG_NAME`}}",
+    "created_image_desc": "{{env `CREATED_IMG_DESC`}}",
     "ubuntu_name": "{{env `UBUNTU_NAME`}}"
   },
   "builders":
@@ -21,7 +22,8 @@
       "use_floating_ip": "true",
       "floating_ip_pool": "{{user `os_floating_ip_pool`}}",
       "security_groups": ["default", "{{user `os_security_grp`}}"],
-      "networks": ["{{user `os_network`}}"]
+      "networks": ["{{user `os_network`}}"],
+      "metadata": {"description": "{{user `created_image_desc`}}"}
     }
   ],
   "provisioners":
