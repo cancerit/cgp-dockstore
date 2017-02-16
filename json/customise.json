@@ -1,0 +1,37 @@
+{
+  "variables":
+  {
+    "os_source_image": "{{env `BASE_IMAGE_ID`}}",
+    "os_flavor": "{{env `OS_BASE_FLAVOR`}}",
+    "os_floating_ip_pool": "{{env `OS_FIP_POOL`}}",
+    "os_security_grp": "{{env `OS_SECURITY_GRP`}}",
+    "os_network": "{{env `OS_NETWORK_ID`}}",
+    "created_image_name": "{{env `CREATED_IMG_NAME`}}",
+    "created_image_desc": "{{env `CREATED_IMG_DESC`}}",
+    "customise_script": "{{env `CUST_SCRIPT`}}"
+  },
+  "builders":
+  [
+    {
+      "type": "openstack",
+      "ssh_username": "ubuntu",
+      "image_name": "{{user `created_image_name`}}",
+      "source_image": "{{user `os_source_image`}}",
+      "flavor": "{{user `os_flavor`}}",
+      "insecure": "true",
+      "use_floating_ip": "true",
+      "floating_ip_pool": "{{user `os_floating_ip_pool`}}",
+      "security_groups": ["default", "{{user `os_security_grp`}}"],
+      "networks": ["{{user `os_network`}}"],
+      "metadata": {"description": "{{user `created_image_desc`}}"}
+    }
+  ],
+  "provisioners":
+  [
+    {
+      "type": "shell",
+      "scripts": ["{{user `customise_script`}}"]
+    }
+  ],
+  "post-processors": [ [  ] ]
+}
