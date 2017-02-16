@@ -17,8 +17,9 @@ GIT_IMG_NAME="cgp-wr-dockstore_${UBUNTU_NAME} ${GEN_DATE} (${GIT_CID})"
 ## if the image exists delete and continue
 set +e
 openstack image show "$GIT_IMG_NAME"
+EXIT=$?
 set -e
-if [ $? -eq 0 ]; then
+if [ $EXIT -eq 0 ]; then
   openstack image delete "$GIT_IMG_NAME"
 fi
 
