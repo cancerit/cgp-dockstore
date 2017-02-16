@@ -14,7 +14,7 @@ GIT_CID=`git describe --always --dirty`
 GIT_CID_CLEAN=`git describe --always`
 GEN_DATE=`date "+%Y-%m-%d"`
 GIT_IMG_NAME="cgp-wr-ds_${UBUNTU_NAME} ${GEN_DATE} (${GIT_CID})"
-CREATED_IMG_DESC="https://gitlab.internal.sanger.ac.uk/kr2/cgp-dockstore/tree/$GIT_CID_CLEAN"
+CREATED_IMG_DESC="https://gitlab.internal.sanger.ac.uk/CancerIT/cgp-dockstore/tree/$GIT_CID_CLEAN"
 
 # get IDs needed for underlying build
 BASE_IMAGE_ID=`openstack image show -f value -c id "$OS_BASE_IMAGE"`
