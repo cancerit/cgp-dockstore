@@ -2,8 +2,11 @@
 
 set -uxe
 
-# stop docker
-sudo stop docker
+# setup our network config
+sudo mkdir -p /etc/docker
+sudo bash -c "echo '{ \"bip\": \"192.168.64.3/18\", \"dns\": [\"8.8.8.8\",\"8.8.4.4\"], \"mtu\": 1380 }' > /etc/docker/daemon.json"
+sudo bash -c "curl -sSL $DOCKER_BUILD_SCRIPT | sh"
+sudo usermod -aG docker ubuntu
 
 ## JAVA for DOCKSTORE - no jre8 in apt by default
 sudo add-apt-repository -y ppa:webupd8team/java
@@ -44,7 +47,3 @@ server-url: https://dockstore.org:8443
 sudo -u ubuntu dockstore
 #
 ## DOCKSTORE ##
-
-## Apply correct network config for docker and start
-sudo bash -c "echo DOCKER_OPTS=\'--dns 8.8.8.8 --dns 8.8.4.4 --bip=192.168.64.3/18 --mtu=1400\' > /etc/default/docker"
-sudo start docker

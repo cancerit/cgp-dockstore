@@ -8,8 +8,7 @@
     "os_network": "{{env `OS_NETWORK_ID`}}",
     "created_image_name": "{{env `CREATED_IMG_NAME`}}",
     "created_image_desc": "{{env `CREATED_IMG_DESC`}}",
-    "ubuntu_name": "{{env `UBUNTU_NAME`}}",
-    "docker_script": "{{env `DOCKER_BUILD_SCRIPT`}}"
+    "customise_script": "{{env `CUST_SCRIPT`}}"
   },
   "builders":
   [
@@ -31,8 +30,7 @@
   [
     {
       "type": "shell",
-      "environment_vars": ["DOCKER_BUILD_SCRIPT={{user `docker_script`}}"],
-      "scripts": ["scripts/{{user `ubuntu_name`}}/build.sh"]
+      "scripts": ["{{user `customise_script`}}"]
     }
   ],
   "post-processors": [ [  ] ]
