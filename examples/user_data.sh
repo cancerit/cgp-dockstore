@@ -11,29 +11,37 @@ Standard examples are included (but redacted) below.
 
 exit 0
 
-## add sanger security certificates
+## add security certificates
 sudo mkdir -p /usr/share/ca-certificates/sanger.ac.uk
 sudo bash -c 'echo "-----BEGIN CERTIFICATE-----
-M...
+...
 -----END CERTIFICATE-----" > /usr/share/ca-certificates/sanger.ac.uk/Genome_Research_Ltd_Certificate_Authority-cert.pem'
 
 sudo bash -c 'echo "sanger.ac.uk/Genome_Research_Ltd_Certificate_Authority-cert.pem" >> /etc/ca-certificates.conf'
 sudo update-ca-certificates -v
 
-### MY S3 CFG
+### S3CMD CFG
 sudo -u ubuntu bash -c 'echo "[default]
 access_key = ...
 encrypt = False
-host_base = cog.sanger.ac.uk
-host_bucket = %(bucket)s.cog.sanger.ac.uk
+host_base = ...
+host_bucket = ...
 progress_meter = False
 secret_key = ...
 use_https = True
 " > ~/.s3cfg'
 
+sudo -u ubuntu mkdir -p /home/ubuntu/.dockstore /home/ubuntu/.aws
+
+### AWS version of S3 config, saves passing to dockstore via env
+sudo -uubuntu bash -c 'echo "[default]
+aws_access_key_id=...
+aws_secret_access_key=...
+" > ~/.aws/credentials
+
 ### MY dockstore credentials:
 sudo -u ubuntu bash -c 'echo "token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 server-url: https://dockstore.org:8443
 [s3]
-endpoint = https://cog.sanger.ac.uk
+endpoint = ...
 " > /home/ubuntu/.dockstore/config'
