@@ -5,16 +5,19 @@ set -ue
 if [ $# -lt 3 ]; then
   echo "
 USAGE:
-    customise.sh <CUSTOM_SCRIPT> <SOURCE_IMG_ID/NAME> <DEST_IMG_NAME>
+    customise.sh <NETWORK_NAME> <SECURITY_GROUP> <XXX-openrc.sh> <CUSTOM_SCRIPT> <SOURCE_IMG_ID/NAME> <DEST_IMG_NAME>
 
  You may need to quote options
 "
   exit 1
 fi
 
-CUST_SCRIPT=$1
-SOURCE_IMG=$2
-DEST_IMG=$3
+OS_NETWORK_NAME=$1
+OS_SECURITY_GRP=$2
+OS_CRED_FILE=$3
+CUST_SCRIPT=$4
+SOURCE_IMG=$5
+DEST_IMG=$6
 
 if [ ! -f $CUST_SCRIPT ]; then
   echo "ERROR: Failed to find script $CUST_SCRIPT"
@@ -63,6 +66,7 @@ fi
 SOURCE_IMG_DESC=`openstack image show -f value -c properties "$SOURCE_IMG_ID" | perl -nle 'm/description=.([^\x27]+)/; print $1;'`
 OS_NETWORK_ID=`openstack network show -f value -c id ${OS_NETWORK_NAME}`
 
+export OS_SECURITY_GRP=$OS_SECURITY_GRP
 export OS_NETWORK_ID=$OS_NETWORK_ID
 export BASE_IMAGE_ID=$SOURCE_IMG_ID
 export CREATED_IMG_DESC="User customisation of $SOURCE_IMG_DESC"

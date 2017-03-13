@@ -36,7 +36,7 @@ sudo -H pip install --upgrade s3cmd
 #
 sudo mkdir /opt/dockstore
 sudo chmod ugo+rx /opt/dockstore
-sudo bash -c "curl -sSL https://github.com/ga4gh/dockstore/releases/download/1.1.2/dockstore > /opt/dockstore/dockstore"
+sudo bash -c "curl -sSL https://github.com/ga4gh/dockstore/releases/download/1.1.5/dockstore > /opt/dockstore/dockstore"
 sudo chmod ugo+rx /opt/dockstore/dockstore
 sudo ln -s /opt/dockstore/dockstore /usr/local/bin/dockstore
 ## add dummy token (only change if you want to develop)
