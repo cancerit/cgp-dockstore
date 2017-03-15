@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -uex
+set -ue
 
 if [ $# -ne 4 ]; then
   echo "Execute as: pbuild.sh <trusty|xenial> <NETWORK_NAME> <SECURITY_GROUP> <XXX-openrc.sh>"
