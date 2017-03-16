@@ -36,6 +36,7 @@ export CREATED_IMG_NAME=$GIT_IMG_NAME
 export CREATED_IMG_DESC=$CREATED_IMG_DESC
 export OS_NETWORK_ID=$OS_NETWORK_ID
 export DOCKER_BUILD_SCRIPT=$DOCKER_BUILD_SCRIPT
+export UBUNTU_NAME=$UBUNTU_NAME
 
 # check that the json validates before moving on
 packer validate json/build.json
