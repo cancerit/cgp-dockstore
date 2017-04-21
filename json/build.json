@@ -13,7 +13,8 @@
     "pip_setuptools_ver": "{{env `PIP_SETUPTOOLS_VER`}}",
     "pip_cwltool_ver": "{{env `PIP_CWLTOOL_VER`}}",
     "pip_schema_salad_ver": "{{env `PIP_SCHEMA_SALAD_VER`}}",
-    "pip_avro_ver": "{{env `PIP_AVRO_VER`}}"
+    "pip_avro_ver": "{{env `PIP_AVRO_VER`}}",
+    "clone_base": "{{env `CLONE_BASE`}}"
   },
   "builders":
   [
@@ -42,7 +43,7 @@
           "PIP_SCHEMA_SALAD_VER={{user `pip_schema_salad_ver`}}",
           "PIP_AVRO_VER={{user `pip_avro_ver`}}"
       ],
-      "scripts": ["scripts/{{user `ubuntu_name`}}/build.sh"]
+      "scripts": ["{{user `clone_base`}}/scripts/{{user `ubuntu_name`}}/build.sh"]
     }
   ],
   "post-processors": [ [  ] ]

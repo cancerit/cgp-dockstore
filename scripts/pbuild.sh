@@ -12,22 +12,24 @@ OS_NETWORK_NAME=$2
 OS_SECURITY_GRP=$3
 OS_CRED_FILE=$4
 
-SCRIPT_PATH=`dirname $0`;
-SCRIPT_PATH=`(cd $SCRIPT_PATH && pwd)`
+CLONE_BASE=`dirname $0`
+CLONE_BASE=`(cd $CLONE_BASE/.. && pwd)`
+SCRIPT_PATH=$CLONE_BASE/scripts
+JSON_PATH=$CLONE_BASE/json
 
-source $SCRIPT_PATH/../env/${UBUNTU_NAME}/build.env
-source $SCRIPT_PATH/../env/platform.env
-source $SCRIPT_PATH/../env/versions.env
+source $CLONE_BASE/env/${UBUNTU_NAME}/build.env
+source $CLONE_BASE/env/platform.env
+source $CLONE_BASE/env/versions.env
 source $OS_CRED_FILE
 
 # build the names for artifacts
-GIT_CID=`git describe --always --dirty`
-GIT_CID_CLEAN=`git describe --always`
+GIT_CID=`(cd $SCRIPT_PATH && git describe --always --dirty)`
+GIT_CID_CLEAN=`(cd $SCRIPT_PATH && git describe --always)`
 GEN_DATE=`date "+%Y-%m-%d"`
 GIT_IMG_NAME="cgp-ds_${UBUNTU_NAME}_${GEN_DATE}_${GIT_CID}"
 
 # turn the remote into a repo URL pointing to the commit.
-GIT_REMOTE=`git config --get remote.origin.url`
+GIT_REMOTE=`(cd $SCRIPT_PATH && git config --get remote.origin.url)`
 CREATED_IMG_DESC=$GIT_REMOTE
 if [[ $GIT_REMOTE == git@* ]]; then
   # strip the bit we don't want and replace :
@@ -48,6 +50,7 @@ export CREATED_IMG_NAME=$GIT_IMG_NAME
 export CREATED_IMG_DESC=$CREATED_IMG_DESC
 export OS_NETWORK_ID=$OS_NETWORK_ID
 export UBUNTU_NAME=$UBUNTU_NAME
+export CLONE_BASE=$CLONE_BASE
 
 # re-export verion stuff
 export DOCKSTORE_VERSION=$DOCKSTORE_VERSION
@@ -57,7 +60,7 @@ export PIP_SCHEMA_SALAD_VER=$PIP_SCHEMA_SALAD_VER
 export PIP_AVRO_VER=$PIP_AVRO_VER
 
 # check that the json validates before moving on
-packer validate json/build.json
+packer validate $JSON_PATH/build.json
 
 ## if the image exists from an earlier build delete and continue (only going to occur on '-dirty' git repo)
 set +e
@@ -76,8 +79,6 @@ if [ $EXIT -eq 0 ]; then
   openstack image delete "$GIT_IMG_NAME"
 fi
 
-packer build -machine-readable \
- json/build.json \
- < /dev/null
+packer build -machine-readable $JSON_PATH/build.json < /dev/null
 
 exit 0
