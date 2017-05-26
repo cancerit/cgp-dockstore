@@ -1,5 +1,7 @@
 #!/bin/bash
 
+CGP_DS_VERSION=1.0.1
+
 set -ue
 
 if [ $# -ne 4 ]; then
@@ -17,19 +19,21 @@ CLONE_BASE=`(cd $CLONE_BASE/.. && pwd)`
 SCRIPT_PATH=$CLONE_BASE/scripts
 JSON_PATH=$CLONE_BASE/json
 
-source $CLONE_BASE/env/${UBUNTU_NAME}/build.env
-source $CLONE_BASE/env/platform.env
-source $CLONE_BASE/env/versions.env
-source $OS_CRED_FILE
-
 # build the names for artifacts
-GIT_CID=`(cd $SCRIPT_PATH && git describe --always --dirty)`
-GIT_CID_CLEAN=`(cd $SCRIPT_PATH && git describe --always)`
+if [ -d $SCRIPT_PATH/../.git ]; then
+  GIT_CID=`(cd $SCRIPT_PATH && git describe --always --dirty)`
+  GIT_CID_CLEAN=`(cd $SCRIPT_PATH && git describe --always)`
+  GIT_REMOTE=`(cd $SCRIPT_PATH && git config --get remote.origin.url)`
+else
+  GIT_CID=$CGP_DS_VERSION
+  GIT_CID_CLEAN=$CGP_DS_VERSION
+  GIT_REMOTE="https://gitlab.internal.sanger.ac.uk/CancerIT/cgp-dockstore.git"
+fi
+
 GEN_DATE=`date "+%Y-%m-%d"`
 GIT_IMG_NAME="cgp-ds_${UBUNTU_NAME}_${GEN_DATE}_${GIT_CID}"
 
 # turn the remote into a repo URL pointing to the commit.
-GIT_REMOTE=`(cd $SCRIPT_PATH && git config --get remote.origin.url)`
 CREATED_IMG_DESC=$GIT_REMOTE
 if [[ $GIT_REMOTE == git@* ]]; then
   # strip the bit we don't want and replace :
@@ -39,6 +43,11 @@ fi
 # now clean up the tail for http and git remotes
 CREATED_IMG_DESC=`echo $CREATED_IMG_DESC | sed 's/....$//'`
 CREATED_IMG_DESC="$CREATED_IMG_DESC/tree/$GIT_CID_CLEAN"
+
+source $CLONE_BASE/env/${UBUNTU_NAME}/build.env
+source $CLONE_BASE/env/platform.env
+source $CLONE_BASE/env/versions.env
+source $OS_CRED_FILE
 
 # get IDs needed for underlying build
 BASE_IMAGE_ID=`openstack image show -f value -c id "$OS_BASE_IMAGE"`
