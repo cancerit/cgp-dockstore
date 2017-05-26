@@ -8,8 +8,13 @@ The build is 90% controlled by environment variables.
 
 The relevant variables are held in:
 
-* [`env/shared.env`](env/shared.env) - core variables
-* [`env/$UBUNTU_NAME/build.env`](env/trusty/build.env) - Ubuntu specific variables (base image)
+* [`env/shared.env`](/env/platform.env)
+  * Instance flavor for build, floating_ip_pool
+* [`env/versions.env`](/env/versions.env)
+  * Version numbers for dockstore and dependencies
+  * See step 2 of [`Onboarding`](https://dockstore.org/onboarding)
+* [`env/$UBUNTU_NAME/build.env`](/env/trusty/build.env)
+  * Ubuntu version specific variables
 
 ## Building the base image
 
@@ -24,7 +29,7 @@ scripts/pbuild.sh trusty sellotape bubble-wrap my-tenant-openrc.sh
 
 #### OpenStack credentials (`my-tenant-openrc.sh`)
 
-__Get this file from the Horizon interface__:
+_Get this file from the Horizon interface_:
 
 ```
 Tabs: Compute -> Access & Security -> API Access
@@ -32,10 +37,12 @@ Tabs: Compute -> Access & Security -> API Access
 Button: Download OpenStack RC File
 ```
 
+![Horizon interface image](/images/HorizonRCfile.png)
+
 ## Customisation of the base image
 
 Other custom configuration can be applied on top of the base image by providing a `user_data` script.  An
-example can be found [here](../examples/user_data.sh).
+example can be found [here](/examples/user_data.sh).
 
 To run customise run:
 
