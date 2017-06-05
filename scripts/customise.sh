@@ -29,10 +29,12 @@ if [ "$SOURCE_IMG" == "$DEST_IMG" ]; then
   exit 1
 fi
 
-SCRIPT_PATH=`dirname $0`;
-SCRIPT_PATH=`(cd $SCRIPT_PATH && pwd)`
+CLONE_BASE=`dirname $0`
+CLONE_BASE=`(cd $CLONE_BASE/.. && pwd)`
+SCRIPT_PATH=$CLONE_BASE/scripts
+JSON_PATH=$CLONE_BASE/json
 
-source $SCRIPT_PATH/../env/shared.env
+source $CLONE_BASE/env/shared.env
 source $OS_CRED_FILE
 
 set +e
@@ -73,8 +75,6 @@ export CREATED_IMG_DESC="User customisation of $SOURCE_IMG_DESC"
 export CREATED_IMG_NAME=$DEST_IMG
 export CUST_SCRIPT=$CUST_SCRIPT
 
-packer validate json/customise.json
+packer validate $JSON_PATH/customise.json
 
-packer build -machine-readable \
- json/customise.json \
- < /dev/null
+packer build -machine-readable $JSON_PATH/customise.json < /dev/null
