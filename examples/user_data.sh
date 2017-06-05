@@ -12,12 +12,12 @@ Standard examples are included (but redacted) below.
 exit 0
 
 ## add security certificates
-sudo mkdir -p /usr/share/ca-certificates/sanger.ac.uk
+sudo mkdir -p /usr/share/ca-certificates/somedomain.ac.uk
 sudo bash -c 'echo "-----BEGIN CERTIFICATE-----
 ...
------END CERTIFICATE-----" > /usr/share/ca-certificates/sanger.ac.uk/Genome_Research_Ltd_Certificate_Authority-cert.pem'
+-----END CERTIFICATE-----" > /usr/share/ca-certificates/somedomain.ac.uk/SOMEGROUP_Certificate_Authority-cert.pem'
 
-sudo bash -c 'echo "sanger.ac.uk/Genome_Research_Ltd_Certificate_Authority-cert.pem" >> /etc/ca-certificates.conf'
+sudo bash -c 'echo "somedomain.ac.uk/SOMEGROUP_Certificate_Authority-cert.pem" >> /etc/ca-certificates.conf'
 sudo update-ca-certificates -v
 
 ### S3CMD CFG
@@ -42,6 +42,4 @@ aws_secret_access_key=...
 ### MY dockstore credentials:
 sudo -u ubuntu bash -c 'echo "token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 server-url: https://dockstore.org:8443
-[s3]
-endpoint = ...
 " > /home/ubuntu/.dockstore/config'

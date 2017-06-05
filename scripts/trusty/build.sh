@@ -49,6 +49,14 @@ sudo -u ubuntu mkdir -p /home/ubuntu/.dockstore
 sudo -u ubuntu bash -c 'echo "token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 server-url: https://dockstore.org:8443
 " > /home/ubuntu/.dockstore/config'
+# plugins we want:
+sudo -u ubuntu bash -c 'echo "[{
+  \"name\": \"dockstore-file-s3cmd-plugin\",
+  \"version\": \"0.0.4\"
+  }
+]
+" > /home/ubuntu/.dockstore/plugins.json'
 sudo -u ubuntu dockstore
+sudo -u ubuntu dockstore plugin download
 #
 ## DOCKSTORE ##

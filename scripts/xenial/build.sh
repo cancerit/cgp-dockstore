@@ -11,7 +11,7 @@ sudo bash -c "echo '{ \"bip\": \"192.168.64.3/18\", \"dns\": [\"8.8.8.8\",\"8.8.
 sudo apt-get -y install apt-transport-https ca-certificates curl
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt-get update
+sudo apt-get -yq update
 sudo apt-get -y install docker-ce
 sudo usermod -aG docker ubuntu
 
@@ -49,6 +49,14 @@ sudo -u ubuntu mkdir -p /home/ubuntu/.dockstore
 sudo -u ubuntu bash -c 'echo "token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 server-url: https://dockstore.org:8443
 " > /home/ubuntu/.dockstore/config'
+# plugins we want:
+sudo -u ubuntu bash -c 'echo "[{
+  \"name\": \"dockstore-file-s3cmd-plugin\",
+  \"version\": \"0.0.4\"
+  }
+]
+" > /home/ubuntu/.dockstore/plugins.json'
 sudo -u ubuntu dockstore
+sudo -u ubuntu dockstore plugin download
 #
 ## DOCKSTORE ##
