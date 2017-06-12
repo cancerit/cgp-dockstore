@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CGP_DS_VERSION=1.2.0
+CGP_DS_VERSION=1.2.1
 
 set -ue
 
@@ -27,7 +27,7 @@ if [ -d $SCRIPT_PATH/../.git ]; then
 else
   GIT_CID=$CGP_DS_VERSION
   GIT_CID_CLEAN=$CGP_DS_VERSION
-  GIT_REMOTE="https://gitlab.internal.sanger.ac.uk/CancerIT/cgp-dockstore.git"
+  GIT_REMOTE="https://github.com/cancerit/cgp-dockstore.git"
 fi
 
 GEN_DATE=`date "+%Y-%m-%d"`
