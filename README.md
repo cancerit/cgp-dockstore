@@ -5,7 +5,7 @@ at Dockstore.org packer on openstack.
 
 * [Requirements](#requirements)
 * [Build Environment](#build-environment)
-  * [OpenStack credentials (`my-tenant-openrc.sh`)](#openstack-credentials-my-tenant-openrc.sh)
+  * [OpenStack credentials (`my-tenant-openrc.sh`)](#openstack-credentials-my-tenant-openrcsh)
 * [Building the base image](#building-the-base-image)
 * [Customisation of the base image](#customisation-of-the-base-image)
 
