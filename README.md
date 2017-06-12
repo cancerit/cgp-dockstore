@@ -7,6 +7,7 @@ at Dockstore.org packer on openstack.
 * [Build Environment](#build-environment)
   * [OpenStack credentials (`my-tenant-openrc.sh`)](#openstack-credentials-my-tenant-openrcsh)
 * [Building the base image](#building-the-base-image)
+  * [BIP, DNS and MTU](#BIP-DNS-and-MTU)
 * [Customisation of the base image](#customisation-of-the-base-image)
 
 ## Requirements
@@ -50,6 +51,11 @@ scripts/pbuild.sh <trusty|xenial> <NETWORK_NAME> <SECURITY_GROUP> <XXX-openrc.sh
 e.g.
 scripts/pbuild.sh trusty sellotape bubble-wrap my-tenant-openrc.sh
 ```
+
+### BIP, DNS and MTU
+
+Please confirm with your local administrators that the `bip`, `dns` and `mtu` values
+set in the `scripts/$UBUNTU_NAME/build.sh` scripts are suitable for your network.
 
 ## Customisation of the base image
 
