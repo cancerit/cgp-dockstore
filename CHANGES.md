@@ -1,3 +1,7 @@
+### 1.2.0
+* First release directly to GitHub
+* Mostly documentation
+
 ### 1.1.0
 * dockstore 1.2.3 - new output features
 * Better docs
