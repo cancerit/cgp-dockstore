@@ -34,7 +34,7 @@ CLONE_BASE=`(cd $CLONE_BASE/.. && pwd)`
 SCRIPT_PATH=$CLONE_BASE/scripts
 JSON_PATH=$CLONE_BASE/json
 
-source $CLONE_BASE/env/shared.env
+source $CLONE_BASE/env/platform.env
 source $OS_CRED_FILE
 
 set +e
