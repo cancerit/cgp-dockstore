@@ -48,6 +48,10 @@ sudo ln -s /opt/dockstore/dockstore /usr/local/bin/dockstore
 sudo -u ubuntu mkdir -p /home/ubuntu/.dockstore
 sudo -u ubuntu bash -c 'echo "token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 server-url: https://dockstore.org:8443
+
+[dockstore-file-s3cmd-plugin]
+client = /usr/local/bin/s3cmd
+config-file-location = /home/ubuntu/.s3cfg
 " > /home/ubuntu/.dockstore/config'
 # plugins we want:
 sudo -u ubuntu bash -c 'echo "[{
