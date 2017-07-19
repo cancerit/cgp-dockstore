@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CGP_DS_VERSION=1.2.2
+CGP_DS_VERSION=1.2.3
 
 set -ue
 
