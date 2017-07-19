@@ -56,7 +56,7 @@ config-file-location = /home/ubuntu/.s3cfg
 # plugins we want:
 sudo -u ubuntu bash -c 'echo "[{
   \"name\": \"dockstore-file-s3cmd-plugin\",
-  \"version\": \"0.0.4\"
+  \"version\": \"0.0.6\"
   }
 ]
 " > /home/ubuntu/.dockstore/plugins.json'
