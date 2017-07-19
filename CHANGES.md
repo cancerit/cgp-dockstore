@@ -1,3 +1,14 @@
+### 1.2.3
+* Update dockstore version to 1.2.5
+* Fix #3 s3cmd plugin updated to 0.0.6
+
+### 1.2.2
+Added missing config to ~/.dockstore/config to allow use of s3cmd plugin "out-of-the-box".
+
+### 1.2.1
+* Corrects the URL embedded in created image description
+* Fixes #2, when using the customisation script.
+
 ### 1.2.0
 * First release directly to GitHub
 * Mostly documentation
