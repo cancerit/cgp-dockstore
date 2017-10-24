@@ -7,12 +7,12 @@ sudo mkdir -p /etc/docker
 sudo bash -c "echo '{ \"bip\": \"192.168.64.3/18\", \"dns\": [\"8.8.8.8\",\"8.8.4.4\"], \"mtu\": 1380 }' > /etc/docker/daemon.json"
 # can check this takes with: docker network inspect bridge
 
-# New docker-ce install method: https://store.docker.com/editions/community/docker-ce-server-ubuntu?tab=description
-sudo apt-get -y install apt-transport-https ca-certificates curl
+# New docker-ce install method: https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
+sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt-get -yq update
-sudo apt-get -y install docker-ce
+sudo apt-get -y install docker-ce=$DOCKER_VERSION
 sudo usermod -aG docker ubuntu
 
 ## JAVA for DOCKSTORE - no jre8 in apt by default
@@ -30,7 +30,11 @@ sudo apt-get -yq install nano less samtools build-essential
 sudo apt-get -yq install python-dev python-pip
 sudo -H pip install --upgrade pip
 sudo -H pip install setuptools==$PIP_SETUPTOOLS_VER
-sudo -H pip install cwl-runner cwltool==$PIP_CWLTOOL_VER schema-salad==$PIP_SCHEMA_SALAD_VER avro==$PIP_AVRO_VER
+sudo -H pip install cwl-runner
+sudo -H pip install cwltool==$PIP_CWLTOOL_VER
+sudo -H pip install schema-salad==$PIP_SCHEMA_SALAD_VER
+sudo -H pip install avro==$PIP_AVRO_VER
+sudo -H pip install ruamel.yaml==$PIP_RUAMEL
 #
 ## CWLTOOLS ##
 

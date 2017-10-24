@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CGP_DS_VERSION=1.2.3
+CGP_DS_VERSION=1.3.0
 
 set -ue
 
@@ -62,11 +62,13 @@ export UBUNTU_NAME=$UBUNTU_NAME
 export CLONE_BASE=$CLONE_BASE
 
 # re-export verion stuff
+export DOCKER_VERSION=$DOCKER_VERSION
 export DOCKSTORE_VERSION=$DOCKSTORE_VERSION
 export PIP_SETUPTOOLS_VER=$PIP_SETUPTOOLS_VER
 export PIP_CWLTOOL_VER=$PIP_CWLTOOL_VER
 export PIP_SCHEMA_SALAD_VER=$PIP_SCHEMA_SALAD_VER
 export PIP_AVRO_VER=$PIP_AVRO_VER
+export PIP_RUAMEL=$PIP_RUAMEL
 
 # check that the json validates before moving on
 packer validate $JSON_PATH/build.json
