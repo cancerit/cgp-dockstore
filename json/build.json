@@ -9,11 +9,13 @@
     "created_image_name": "{{env `CREATED_IMG_NAME`}}",
     "created_image_desc": "{{env `CREATED_IMG_DESC`}}",
     "ubuntu_name": "{{env `UBUNTU_NAME`}}",
+    "docker_version": "{{env `DOCKER_VERSION`}}",
     "dockstore_version": "{{env `DOCKSTORE_VERSION`}}",
     "pip_setuptools_ver": "{{env `PIP_SETUPTOOLS_VER`}}",
     "pip_cwltool_ver": "{{env `PIP_CWLTOOL_VER`}}",
     "pip_schema_salad_ver": "{{env `PIP_SCHEMA_SALAD_VER`}}",
     "pip_avro_ver": "{{env `PIP_AVRO_VER`}}",
+    "pip_ruamel": "{{env `PIP_RUAMEL`}}",
     "clone_base": "{{env `CLONE_BASE`}}"
   },
   "builders":
@@ -37,11 +39,13 @@
     {
       "type": "shell",
       "environment_vars": [
+          "DOCKER_VERSION={{user `docker_version`}}",
           "DOCKSTORE_VERSION={{user `dockstore_version`}}",
           "PIP_SETUPTOOLS_VER={{user `pip_setuptools_ver`}}",
           "PIP_CWLTOOL_VER={{user `pip_cwltool_ver`}}",
           "PIP_SCHEMA_SALAD_VER={{user `pip_schema_salad_ver`}}",
-          "PIP_AVRO_VER={{user `pip_avro_ver`}}"
+          "PIP_AVRO_VER={{user `pip_avro_ver`}}",
+          "PIP_RUAMEL={{user `pip_ruamel`}}"
       ],
       "scripts": ["{{user `clone_base`}}/scripts/{{user `ubuntu_name`}}/build.sh"]
     }

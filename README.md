@@ -12,8 +12,8 @@ at Dockstore.org packer on openstack.
 
 ## Requirements
 
-* [Packer](https://www.packer.io/) - 0.11.0+
-* [OpenStack Unified Client](https://docs.openstack.org/user-guide/common/cli-overview.html#unified-command-line-client) - 3.3.0+
+* [Packer](https://www.packer.io/): 0.11.0+
+* [OpenStack Unified Client](https://docs.openstack.org/user-guide/common/cli-overview.html#unified-command-line-client): 3.3.0+
 
 ## Build Environment
 
@@ -24,12 +24,13 @@ The relevant variables are held in:
 * [`env/platform.env`](/env/platform.env)
   * Instance flavor for build, floating_ip_pool
 * [`env/versions.env`](/env/versions.env)
-  * Version numbers for dockstore and dependencies
-  * See step 2 of [`Onboarding`](https://dockstore.org/onboarding)
+  * Version numbers for docker, dockstore and dependencies
+    * See step 2 of [`Onboarding`](https://dockstore.org/onboarding)
+    * Please update these as needed if you want a new/alternative version of docker/dockstore.
 * [`env/$UBUNTU_NAME/build.env`](/env/trusty/build.env)
   * Ubuntu version specific variables
 
-#### OpenStack credentials (`my-tenant-openrc.sh`)
+### OpenStack credentials (`my-tenant-openrc.sh`)
 
 _Get this file from the Horizon interface_:
 
@@ -42,6 +43,8 @@ Button: Download OpenStack RC File
 ![Horizon interface image](/images/HorizonRCfile.png)
 
 ## Building the base image
+
+_Note_: Trusty images are ~400MB larger due to additional tools required for aufs.
 
 The base image is generated simply by executing the following:
 
@@ -59,8 +62,8 @@ set in the `scripts/$UBUNTU_NAME/build.sh` scripts are suitable for your network
 
 ## Customisation of the base image
 
-Other custom configuration can be applied on top of the base image by providing a `user_data` script.  An
-example can be found [here](/examples/user_data.sh).
+Other custom configuration can be applied on top of the base image by providing a `user_data`
+script.  An example can be found [here](/examples/user_data.sh).
 
 To run customise run:
 
