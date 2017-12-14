@@ -1,5 +1,12 @@
 # CHANGES
 
+## NEXT
+
+* Now supports both Ubuntu and Alpine linux builds
+  * Ubuntu is currently set to Xenial (~2.2GB image)
+  * Alpine is 3.7 (~700MB image)
+
+
 ## 1.3.0
 
 * Now able to specify docker version
