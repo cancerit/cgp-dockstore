@@ -4,7 +4,7 @@
 
 * Now supports both Ubuntu and Alpine linux builds
   * Ubuntu is currently set to Xenial (~2.2GB image)
-  * Alpine is 3.7 (~700MB image)
+  * Alpine is 3.7-virtual (~700MB image)
 * Dockstore CLI 1.3.3
 * Dockstore s3cmd plugin 0.0.7 (files >150GB now supported)
 
