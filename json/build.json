@@ -8,21 +8,24 @@
     "os_network": "{{env `OS_NETWORK_ID`}}",
     "created_image_name": "{{env `CREATED_IMG_NAME`}}",
     "created_image_desc": "{{env `CREATED_IMG_DESC`}}",
-    "ubuntu_name": "{{env `UBUNTU_NAME`}}",
+    "os_name": "{{env `OS_NAME`}}",
+    "os_user": "{{env `OS_USER`}}",
     "docker_version": "{{env `DOCKER_VERSION`}}",
     "dockstore_version": "{{env `DOCKSTORE_VERSION`}}",
+    "dockstore_s3cmd_ver": "{{env `DOCKSTORE_S3CMD_VER`}}",
     "pip_setuptools_ver": "{{env `PIP_SETUPTOOLS_VER`}}",
     "pip_cwltool_ver": "{{env `PIP_CWLTOOL_VER`}}",
     "pip_schema_salad_ver": "{{env `PIP_SCHEMA_SALAD_VER`}}",
     "pip_avro_ver": "{{env `PIP_AVRO_VER`}}",
     "pip_ruamel": "{{env `PIP_RUAMEL`}}",
+    "pip_requests": "{{env `PIP_REQUESTS`}}",
     "clone_base": "{{env `CLONE_BASE`}}"
   },
   "builders":
   [
     {
       "type": "openstack",
-      "ssh_username": "ubuntu",
+      "ssh_username": "{{user `os_name`}}",
       "image_name": "{{user `created_image_name`}}",
       "source_image": "{{user `os_source_image`}}",
       "flavor": "{{user `os_flavor`}}",
@@ -39,15 +42,19 @@
     {
       "type": "shell",
       "environment_vars": [
+          "OS_USER={{user `os_user`}}",
           "DOCKER_VERSION={{user `docker_version`}}",
           "DOCKSTORE_VERSION={{user `dockstore_version`}}",
+          "DOCKSTORE_S3CMD_VER={{user `dockstore_s3cmd_ver`}}",
           "PIP_SETUPTOOLS_VER={{user `pip_setuptools_ver`}}",
           "PIP_CWLTOOL_VER={{user `pip_cwltool_ver`}}",
           "PIP_SCHEMA_SALAD_VER={{user `pip_schema_salad_ver`}}",
           "PIP_AVRO_VER={{user `pip_avro_ver`}}",
-          "PIP_RUAMEL={{user `pip_ruamel`}}"
+          "PIP_RUAMEL={{user `pip_ruamel`}}",
+          "PIP_REQUESTS={{user `pip_requests`}}"
       ],
-      "scripts": ["{{user `clone_base`}}/scripts/{{user `ubuntu_name`}}/build.sh"]
+      "scripts": ["{{user `clone_base`}}/scripts/{{user `os_name`}}/build.sh",
+                  "{{user `clone_base`}}/scripts/common.sh"]
     }
   ],
   "post-processors": [ [  ] ]

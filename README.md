@@ -3,12 +3,20 @@
 This tool builds an OpenStack image suitable for running tools and workflows registered
 at Dockstore.org packer on openstack.
 
+* [cwltool options](#cwltool-options) - IMPORTANT
 * [Requirements](#requirements)
 * [Build Environment](#build-environment)
   * [OpenStack credentials (`my-tenant-openrc.sh`)](#openstack-credentials-my-tenant-openrcsh)
 * [Building the base image](#building-the-base-image)
   * [BIP, DNS and MTU](#bip-dns-and-mtu)
 * [Customisation of the base image](#customisation-of-the-base-image)
+
+## cwltool options
+
+By default `--no-compute-checksum` is applied to `~/.dockstore/config` so that cwltool
+doesn't generate sha1 checksums.  This is the default as it has little benefit for those
+writing to S3/CEPH systems as they report back MD5.  If working with large files it can be a
+huge drain on resources if the process is on multi-core base systems.
 
 ## Requirements
 
@@ -24,11 +32,12 @@ The relevant variables are held in:
 * [`env/platform.env`](/env/platform.env)
   * Instance flavor for build, floating_ip_pool
 * [`env/versions.env`](/env/versions.env)
-  * Version numbers for docker, dockstore and dependencies
+  * Version numbers for dockstore and dependencies
     * See step 2 of [`Onboarding`](https://dockstore.org/onboarding)
-    * Please update these as needed if you want a new/alternative version of docker/dockstore.
-* [`env/$UBUNTU_NAME/build.env`](/env/trusty/build.env)
-  * Ubuntu version specific variables
+    * Please update these as needed if you want a new/alternative version of dockstore.
+* [`env/$OS_NAME/build.env`](/env/ubuntu/build.env)
+  * Ubuntu/Alpine version specific variables
+  * Docker version (due to different method of package install)
 
 ### OpenStack credentials (`my-tenant-openrc.sh`)
 
@@ -49,16 +58,16 @@ _Note_: Trusty images are ~400MB larger due to additional tools required for auf
 The base image is generated simply by executing the following:
 
 ```
-scripts/pbuild.sh <trusty|xenial> <NETWORK_NAME> <SECURITY_GROUP> <XXX-openrc.sh>
+scripts/pbuild.sh <ubuntu|alpine> <NETWORK_NAME> <SECURITY_GROUP> <XXX-openrc.sh>
 
 e.g.
-scripts/pbuild.sh trusty sellotape bubble-wrap my-tenant-openrc.sh
+scripts/pbuild.sh ubuntu my-network my-sec-grp my-tenant-openrc.sh
 ```
 
 ### BIP, DNS and MTU
 
 Please confirm with your local administrators that the `bip`, `dns` and `mtu` values
-set in the `scripts/$UBUNTU_NAME/build.sh` scripts are suitable for your network.
+set in the `scripts/$OS_NAME/build.sh` scripts are suitable for your network.
 
 ## Customisation of the base image
 
@@ -73,6 +82,6 @@ scripts/customise.sh <NETWORK_NAME> <SECURITY_GROUP> <XXX-openrc.sh> \
 
 e.g.
 
-scripts/customise.sh sellotape bubble-wrap my-tenant-openrc.sh \
- my_custom.sh 'cgp-ds_trusty 2017-06-01 (1.0.0)' 'my-cgp-ds_trusty-1.0.0'
+scripts/customise.sh my-network my-sec-grp my-tenant-openrc.sh \
+ my_custom.sh 'cgp-ds_ubuntu 2017-12-15 (2.0.0)' 'my-cgp-ds_ubuntu-2.0.0'
 ```
