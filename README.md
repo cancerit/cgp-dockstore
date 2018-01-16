@@ -3,12 +3,20 @@
 This tool builds an OpenStack image suitable for running tools and workflows registered
 at Dockstore.org packer on openstack.
 
+* [cwltool options](#cwltool-options) - IMPORTANT
 * [Requirements](#requirements)
 * [Build Environment](#build-environment)
   * [OpenStack credentials (`my-tenant-openrc.sh`)](#openstack-credentials-my-tenant-openrcsh)
 * [Building the base image](#building-the-base-image)
   * [BIP, DNS and MTU](#bip-dns-and-mtu)
 * [Customisation of the base image](#customisation-of-the-base-image)
+
+## cwltool options
+
+By default `--no-compute-checksum` is applied to `~/.dockstore/config` so that cwltool
+doesn't generate sha1 checksums.  This is the default as it has little benefit for those
+writing to S3/CEPH systems as they report back MD5.  If working with large files it can be a
+huge drain on resources if the process is on multi-core base systems.
 
 ## Requirements
 
