@@ -1,17 +1,19 @@
 # CHANGES
 
-## NEXT
+## 2.0.0
 
 * Now supports both Ubuntu and Alpine linux builds
   * Ubuntu is currently set to Xenial (~2.2GB image)
   * Alpine is 3.7 (~700MB image)
-
+* Dockstore CLI 1.3.3
+* Dockstore s3cmd plugin 0.0.7 (files >150GB now supported)
 
 ## 1.3.0
 
 * Now able to specify docker version
 * Default `env/versions.env` updated (also adds locked version for `ruaml.yaml`)
-* Fixed Trusty build now docker-ce requires additional packages for it... Trusty support will be dropped at next release
+* Fixed Trusty build now docker-ce requires additional packages for it...
+* _Trusty_ support __will be dropped__ at next release
 
 ## 1.2.3
 
