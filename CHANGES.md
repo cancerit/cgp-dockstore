@@ -1,5 +1,9 @@
 # CHANGES
 
+## 2.0.1
+
+Push the cache settings into ~/.dockstore/config to save looking it up.
+
 ## 2.0.0
 
 * Now supports both Ubuntu and Alpine linux builds
