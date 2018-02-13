@@ -34,6 +34,10 @@ sudo -u $OS_USER mkdir -p /home/$OS_USER/.dockstore
 sudo -u $OS_USER bash -c "echo 'token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 server-url: https://dockstore.org:8443
 
+# cache stuff to save looking up:
+use-cache = false
+#cache-dir =
+
 ## enable to speedup - s3 gives md5 after upload, cwltool uses sha1
 cwltool-extra-parameters: --no-compute-checksum
 
