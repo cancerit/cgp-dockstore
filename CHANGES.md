@@ -1,5 +1,9 @@
 # CHANGES
 
+## 2.0.2
+
+Update to Dockstore 1.3.6
+
 ## 2.0.1
 
 Push the cache settings into ~/.dockstore/config to save looking it up.
