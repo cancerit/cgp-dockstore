@@ -6,7 +6,7 @@ sudo apk add --no-cache bash
 
 sudo bash -c 'echo "http://liskamm.alpinelinux.uk/v3.7/community" >> /etc/apk/repositories'
 
-sudo apk add --no-cache docker=$DOCKER_VERSION
+sudo apk add --no-cache docker
 # setup our network config, works for trusty and xenial
 sudo mkdir -p /etc/docker
 sudo bash -c "echo '{ \"bip\": \"192.168.64.3/18\", \"dns\": [\"8.8.8.8\",\"8.8.4.4\"], \"mtu\": 1380 }' > /etc/docker/daemon.json"
