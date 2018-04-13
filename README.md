@@ -41,19 +41,22 @@ The relevant variables are held in:
 
 ### OpenStack credentials (`my-tenant-openrc.sh`)
 
+Expecting Pike system:
+
 _Get this file from the Horizon interface_:
 
 ```
-Tabs: Compute -> Access & Security -> API Access
+Tabs: Project -> API Access
 
 Button: Download OpenStack RC File
 ```
 
-![Horizon interface image](/images/HorizonRCfile.png)
+Supports the _**v2.0 Identity API**_ only.
 
 ## Building the base image
 
-_Note_: Trusty images are ~400MB larger due to additional tools required for aufs.
+For a production image please download the tagged release bundle. Building from a check-out
+results in commit ids being included in the final image name.
 
 The base image is generated simply by executing the following:
 
