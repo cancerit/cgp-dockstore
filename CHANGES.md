@@ -1,5 +1,10 @@
 # CHANGES
 
+## NEXT
+
+* Migrates to Pike and v2 identity API
+* Upgrades Dockstore to 1.4.1
+
 ## 2.0.2
 
 Update to Dockstore 1.3.6
