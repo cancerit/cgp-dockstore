@@ -4,6 +4,7 @@
 
 * Migrates to Pike and v2 identity API
 * Upgrades Dockstore to 1.4.1
+* Upgrades to dockstore-s3cmd-plugin 0.8
 
 ## 2.0.2
 
