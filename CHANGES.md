@@ -1,5 +1,10 @@
 # CHANGES
 
+## 2.2.0
+
+* Updates to more recent dockstore (1.5.1) + cwl-runner (201804...)
+* Update to docker 18.06.1 (CE)
+
 ## 2.1.0
 
 * Migrates to Pike and v2 identity API
