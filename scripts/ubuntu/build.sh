@@ -17,8 +17,6 @@ sudo usermod -aG docker ubuntu
 
 ## JAVA for DOCKSTORE - no jre8 in apt by default
 sudo add-apt-repository -y ppa:openjdk-r/ppa
-#sudo bash -c '/bin/echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections'
-#sudo bash -c '/bin/echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections'
 sudo apt-get -yq update
 sudo apt-get -yq install --no-install-recommends openjdk-8-jre-headless
 
