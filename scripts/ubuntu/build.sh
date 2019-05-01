@@ -23,4 +23,4 @@ sudo apt-get -yq update
 sudo apt-get -yq install --no-install-recommends openjdk-8-jre-headless
 
 # useful tools and python deps
-sudo apt-get -yq install --no-install-recommends nano less python-dev python-pip
+sudo apt-get -yq install --no-install-recommends build-essential nano less python-dev python-pip
