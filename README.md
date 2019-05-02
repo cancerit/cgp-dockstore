@@ -3,7 +3,7 @@
 This tool builds an OpenStack image suitable for running tools and workflows registered
 at Dockstore.org packer on openstack.
 
-* [cwltool options](#cwltool-options) - IMPORTANT
+* [cwltool options](#cwltool-options)
 * [Requirements](#requirements)
 * [Build Environment](#build-environment)
   * [OpenStack credentials (`my-tenant-openrc.sh`)](#openstack-credentials-my-tenant-openrcsh)
@@ -41,7 +41,7 @@ The relevant variables are held in:
 
 ### OpenStack credentials (`my-tenant-openrc.sh`)
 
-Expecting Pike system:
+Expecting Queens system:
 
 _Get this file from the Horizon interface_:
 
@@ -50,8 +50,6 @@ Tabs: Project -> API Access
 
 Button: Download OpenStack RC File
 ```
-
-Supports the _**v2.0 Identity API**_ only.
 
 ## Building the base image
 
