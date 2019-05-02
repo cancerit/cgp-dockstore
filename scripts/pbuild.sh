@@ -1,11 +1,11 @@
 #!/bin/bash
 
-CGP_DS_VERSION=2.2.0
+CGP_DS_VERSION=2.3.0
 
 set -ue
 
 if [ $# -ne 4 ]; then
-  echo "Execute as: pbuild.sh <ubuntu|alpine> <NETWORK_NAME> <SECURITY_GROUP> <XXX-openrc-v2.sh>"
+  echo "Execute as: pbuild.sh <ubuntu|alpine> <NETWORK_NAME> <SECURITY_GROUP> <XXX-openrc.sh>"
   exit 1
 fi
 

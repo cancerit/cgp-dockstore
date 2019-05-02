@@ -1,5 +1,11 @@
 # CHANGES
 
+## 2.3.0
+
+* Switch to OpenJDK
+* Update dockstore (1.6.0) + cwl-tool (1.0.20181217...)
+* Defaults updated for Sanger systems
+
 ## 2.2.0
 
 * Updates to more recent dockstore (1.5.1) + cwl-runner (201804...)
